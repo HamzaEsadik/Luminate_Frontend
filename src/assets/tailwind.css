@@ -1,0 +1,67 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.logo {
+    @apply font-poppins text-3xl font-bold text-primary text-left;
+}
+h1 {
+    @apply font-poppins text-2xl font-bold text-secondary text-left;
+}
+h2 {
+    @apply font-poppins text-xl font-bold text-secondary text-left;
+}
+h3 {
+    @apply font-poppins text-lg font-medium text-secondary text-left;
+}
+h4 {
+    @apply font-poppins text-base font-medium text-secondary text-left;
+}
+h5 {
+    @apply font-poppins text-sm text-secondary text-left;
+}
+
+button {
+    @apply
+    bg-gradient-to-r from-primary to-primary-light
+    rounded-xl
+    h-10
+    w-full
+    text-white
+    text-base
+    font-bold
+    drop-shadow-button
+    hover:bg-gradient-to-r hover:from-secondary-dark hover:to-secondary-dark
+    active:scale-95;
+}
+
+label {
+    @apply
+    font-poppins
+    text-sm
+    text-secondary
+    text-left
+    mb-2
+    after:content-['*'] after:ml-0.5 after:text-red-500;
+}
+
+input {
+    @apply 
+    border-gray-100
+    border-2
+    rounded-xl
+    h-10
+    w-full
+    drop-shadow-input
+    focus:border-gray-100 focus:outline-none 
+    focus:invalid:border-red-500
+    placeholder-gray-300 text-sm
+    font-poppins px-4 font-medium mb-4;
+}
+
+form {
+    @apply
+    flex flex-col
+}
