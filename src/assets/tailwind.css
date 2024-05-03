@@ -5,22 +5,22 @@
 @tailwind utilities;
 
 .logo {
-    @apply font-poppins text-3xl font-bold text-primary text-left;
+    @apply font-poppins text-4xl font-bold text-primary text-left;
 }
 h1 {
-    @apply font-poppins text-2xl font-bold text-secondary text-left;
+    @apply font-poppins text-4xl font-bold text-secondary text-left;
 }
 h2 {
-    @apply font-poppins text-xl font-bold text-secondary text-left;
+    @apply font-poppins text-3xl font-bold text-secondary text-left;
 }
 h3 {
-    @apply font-poppins text-lg font-medium text-secondary text-left;
+    @apply font-poppins text-2xl font-bold text-secondary text-left;
 }
 h4 {
-    @apply font-poppins text-base font-medium text-secondary text-left;
+    @apply font-poppins text-xl font-medium text-secondary text-left;
 }
 h5 {
-    @apply font-poppins text-sm text-secondary text-left;
+    @apply font-poppins text-lg font-medium text-secondary text-left;
 }
 
 button {
@@ -40,7 +40,7 @@ button {
 label {
     @apply
     font-poppins
-    text-sm
+    text-base
     text-secondary
     text-left
     mb-2
@@ -51,12 +51,24 @@ input {
     @apply 
     border-gray-100
     border-2
+    rounded-2xl
+    h-12
+    w-full
+    drop-shadow-input
+    focus:border-gray-100 focus:outline-none 
+    placeholder-gray-300 text-sm
+    font-poppins px-4 font-medium mb-4;
+}
+
+select {
+    @apply 
+    border-gray-100
+    border-2
     rounded-xl
     h-10
     w-full
     drop-shadow-input
     focus:border-gray-100 focus:outline-none 
-    focus:invalid:border-red-500
     placeholder-gray-300 text-sm
     font-poppins px-4 font-medium mb-4;
 }
