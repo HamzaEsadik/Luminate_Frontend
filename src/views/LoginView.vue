@@ -9,9 +9,9 @@
       <h5 class="mb-8">Don't have an account? <router-link to="/register" class="text-blue-700 cursor-pointer">register</router-link></h5>
       <form action="#" @submit.prevent="login">
         <label for="email">email:</label>
-        <input type="email" placeholder="type your email" v-model="user.email">
+        <input type="email" placeholder="type your email" v-model="user.email" required>
         <label for="password">password:</label>
-        <input type="password" placeholder="type your password" v-model="user.password">
+        <input type="password" placeholder="type your password" v-model="user.password" required>
         <button type="submit" class="mt-5" @submit.prevent="login">Login</button>
       </form>
     </section>

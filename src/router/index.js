@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import DashboardView from '../views/DashboardView.vue'
-import TeamView from '../views/TeamView.vue'
-import ReportView from '../views/ReportView.vue'
 
 const routes = [
   {
@@ -20,16 +18,6 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: DashboardView
-  },
-  {
-    path: '/team',
-    name: 'team',
-    component: TeamView
-  },
-  {
-    path: '/report',
-    name: 'reports',
-    component: ReportView
   },
 ]
 

@@ -1,0 +1,27 @@
+<template>
+  <div class=" w-full h-14">
+    <h1>Welcome Hamza!</h1>
+  </div>
+  <div class="bg-secondary-light w-full rounded-xl px-8 py-14 flex flex-col">
+
+    <div class="h-20 flex flex-row justify-between">
+      <h2>Team</h2>
+        <button class="w-44" @click="this.$store.commit('open_team')">Add new member</button>
+    </div>
+    <ul class="grid grid-cols-1 gap-5">
+      <li class="flex flex-col gap-5 border-2 p-4 rounded-lg border-gray-300">
+        <div class="flex flex-row gap-3 items-center justify-between h-10">
+          <div class="flex flex-row gap-3 items-center">
+            <svg class="h-8 w-8 stroke-2 stroke-secondary-dark" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
+            </svg>
+            <h4 class="w-full line-clamp-1 h-6 font-semibold">Lorem Ipsum is simply</h4>
+          </div>
+          <svg class="w-5 h-5 stroke-slate-500 cursor-pointer stroke-2" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>

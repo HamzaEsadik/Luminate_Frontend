@@ -9,10 +9,10 @@
       <form action="#" @submit.prevent="register">
 
         <label>First name:</label>
-        <input type="text" placeholder="type your first name" v-model="user.first_name">
+        <input type="text" placeholder="type your first name" v-model="user.first_name" required>
 
         <label>Last name:</label>
-        <input type="text" placeholder="type your last name" v-model="user.last_name">
+        <input type="text" placeholder="type your last name" v-model="user.last_name" required>
 
         <label>Role:</label>
         <select name="role" id="role" v-model="user.is_manager">
@@ -24,10 +24,10 @@
         <input type="text" placeholder="type your company name" v-if="user.is_manager" v-model="user.name">
 
         <label>email:</label>
-        <input type="email" placeholder="type your email" v-model="user.email">
+        <input type="email" placeholder="type your email" v-model="user.email"  required>
 
         <label>password:</label>
-        <input type="password" placeholder="type your password" v-model="user.password">
+        <input type="password" placeholder="type your password" v-model="user.password"  required>
 
         <button type="submit" class="mt-5" @submit.prevent="register">Register</button>
       </form>
