@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 export default {
   data() {
     return {
@@ -30,13 +30,17 @@ export default {
   },
   methods: {
     login() {
-      axios.post('http://127.0.0.1:8000/api/login', this.user)
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+        axios.post('http://127.0.0.1:8000/api/login', this.user)
         .then(response => {
-          console.log(response.data);
+          localStorage.setItem("token", response.data.token);
+          //store.state.token = response.data.token;
+          this.$router.push({ name: 'dashboard' });
         })
         .catch(error => {
-          console.error(error);
+          console.log(error.response.data.message);
         });
+      });
     }
   }
 }

@@ -8,8 +8,8 @@
       <svg class="cursor-pointer h-6 w-6 stroke-2 stroke-white" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
       </svg>
-      <h4 class="text-white cursor-pointer">Company</h4>
-      <svg class="cursor-pointer h-6 w-6 stroke-2 stroke-white" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <h4 class="text-white cursor-pointer">{{ $store.state.user_company }}</h4>
+      <svg @click="logout" class="cursor-pointer h-6 w-6 stroke-2 stroke-white" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"></path>
       </svg>
     </div>
@@ -39,11 +39,50 @@
   </div>
 </template>
 <script>
+import store from '@/store';
+import axios, { AxiosError } from 'axios';
+//axios.defaults.withCredentials = true;
 export default {
   data() {
     return {
       'selectedView': 'home',
+      'headers':{
+        'Authorization': 'Bearer ' + localStorage.getItem("token")
+      }
     }
+  },
+  methods: {
+    logout() {
+      axios.post('http://localhost:8000/api/logout', {} ,{
+        headers: this.headers
+      })
+        .then(response => {
+          localStorage.removeItem("token");
+          this.$router.push({ name: 'login' });
+        })
+        .catch(error => {
+          console.log(error.response.data.message);
+        });
+    },
+  },
+  mounted(){
+    const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+    axios.get('http://localhost:8000/api/users', {
+      headers: headers
+    })
+      .then(response => {
+        store.state.user_name = response.data.first_name;
+        store.state.user_company = response.data.company;
+        store.state.user_id = response.data.id;
+        store.state.user_ismanager = Boolean(response.data.is_manager);
+        store.state.company_id = response.data.company_id;
+      })
+      .catch(error => {
+        //localStorage.removeItem("token");
+        //this.$router.push({ name: 'login' });
+      });
   }
 }
 </script>

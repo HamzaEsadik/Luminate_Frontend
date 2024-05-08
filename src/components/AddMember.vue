@@ -15,17 +15,32 @@
 </template>
 
 <script>
+import store from '@/store';
+import axios, { AxiosError } from 'axios';
 export default {
   data() {
     return {
       'member': {
         'email': '',
+        'company_id': '',
       }
     }
   },
   methods: {
     sub() {
-      console.log(this.member);
+      this.member.company_id = store.state.company_id;
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      axios.post('http://127.0.0.1:8000/api/invitations',this.member, {
+        headers: headers,
+      })
+        .then(response => {
+          location.reload();
+        })
+        .catch(error => {
+          console.log(error.response.data.message);
+        });
     }
   }
 }

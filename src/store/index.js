@@ -5,7 +5,21 @@ export default createStore({
     create_meeting: false,
     create_project: false,
     create_task: false,
-    add_team: false
+    add_team: false,
+    user_name: '',
+    user_id: '',
+    user_company: '',
+    company_id: '',
+    user_ismanager: null,
+    
+    projects: [],
+    meetings: [],
+    team: [],
+    tasks: [],
+    invitations: [],
+
+    selected_project: '',
+    selected_user: '',
   },
   getters: {
   },

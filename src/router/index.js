@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import store from '@/store';
 
 const routes = [
   {
@@ -17,13 +18,42 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: DashboardView
+    component: DashboardView,
+    meta: { requiresAuth: true }
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      next('/login')
+    } else {
+      next();
+    }
+  } else {
+    const token = localStorage.getItem("token");
+    if(token) {
+      next('/dashboard');
+    } else {
+      next();
+    }
+  }
 })
 
 export default router
+
+/*
+if (!store.state.token) {
+    console.log('token: null');
+    next('/false')
+  } else {
+    console.log('token: success');
+    next();
+  }
+*/

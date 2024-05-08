@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios, { AxiosError } from 'axios';
 export default {
   data() {
     return {
@@ -28,7 +29,18 @@ export default {
   },
   methods: {
     sub() {
-      console.log(this.meeting);
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      axios.post('http://127.0.0.1:8000/api/meetings',this.meeting, {
+        headers: headers,
+      })
+        .then(response => {
+          location.reload();
+        })
+        .catch(error => {
+          console.log(error.response.data.message);
+        });
     }
   }
 }
