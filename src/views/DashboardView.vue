@@ -80,8 +80,8 @@ export default {
         store.state.company_id = response.data.company_id;
       })
       .catch(error => {
-        //localStorage.removeItem("token");
-        //this.$router.push({ name: 'login' });
+        localStorage.removeItem("token");
+        this.$router.push({ name: 'login' });
       });
   }
 }

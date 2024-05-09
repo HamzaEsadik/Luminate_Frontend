@@ -9,7 +9,8 @@ const routes = [
   {
     path: '/',
     name: 'LandingPage',
-    component: LandingPage
+    component: LandingPage,
+    meta: { Landing: true }
   },
   {
     path: '/login',
@@ -42,6 +43,8 @@ router.beforeEach(function (to, from, next) {
     } else {
       next();
     }
+  } else if(to.matched.some(record => record.meta.Landing)) {
+    next();
   } else {
     const token = localStorage.getItem("token");
     if(token) {

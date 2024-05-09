@@ -132,8 +132,8 @@ export default {
           this.inv = store.state.invitations.data.length;
         })
         .catch(error => {
-          //localStorage.removeItem("token");
-          //this.$router.push({ name: 'login' });
+          localStorage.removeItem("token");
+          this.$router.push({ name: 'login' });
         });
     },
     projects() {
@@ -147,8 +147,8 @@ export default {
         store.state.projects = response.data;
       })
       .catch(error => {
-        //localStorage.removeItem("token");
-        //this.$router.push({ name: 'login' });
+        localStorage.removeItem("token");
+        this.$router.push({ name: 'login' });
       });
     },
     meetings() {
@@ -162,8 +162,8 @@ export default {
             store.state.meetings = response.data;
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
     },
     team() {
@@ -177,8 +177,8 @@ export default {
           store.state.team = response.data;
         })
         .catch(error => {
-          //localStorage.removeItem("token");
-          //this.$router.push({ name: 'login' });
+          localStorage.removeItem("token");
+          this.$router.push({ name: 'login' });
         })
     },
     accept (){
@@ -225,8 +225,8 @@ export default {
             store.state.tasks = response.data;
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
       } else {
         //get tasks
@@ -238,8 +238,8 @@ export default {
             store.state.tasks = response.data;
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
       }
     },
@@ -256,8 +256,8 @@ export default {
             this.tasks();
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
     },
     delete_meeting(id) {
@@ -272,8 +272,8 @@ export default {
             this.meetings();
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
     },
     delete_task(id) {
@@ -288,8 +288,8 @@ export default {
             this.tasks();
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
     },
     check_task(id) {
@@ -304,8 +304,8 @@ export default {
             this.tasks();
           })
           .catch(error => {
-            //localStorage.removeItem("token");
-            //this.$router.push({ name: 'login' });
+            localStorage.removeItem("token");
+            this.$router.push({ name: 'login' });
           });
     }
   }
