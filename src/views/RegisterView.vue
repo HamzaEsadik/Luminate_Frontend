@@ -54,14 +54,16 @@ export default {
   },
   methods: {
     register() {
-      //console.log(this.user);
-      axios.post('http://127.0.0.1:8000/api/register', this.user)
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+        axios.post('http://127.0.0.1:8000/api/register', this.user)
         .then(response => {
-          console.log(response.data);
+          localStorage.setItem("token", response.data.token);
+          this.$router.push({ name: 'dashboard' });
         })
         .catch(error => {
-          console.error(error);
+          console.log(error.response.data.message);
         });
+      });
     }
   }
 }

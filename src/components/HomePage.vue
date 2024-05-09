@@ -76,7 +76,7 @@
       <option v-for="user in $store.state.team" :key="user.id" :value="user.id">{{ user.first_name + ' ' + user.last_name}}</option>
     </select>
     <ul class="grid grid-cols-1 gap-8">
-      <li v-for="task in $store.state.tasks.data" :key="task.id" class="flex flex-col gap-5 border-2 p-4 rounded-lg border-gray-300">
+      <li v-for="task in $store.state.tasks.data" :key="task.id" class="flex flex-col gap-5 border-2 p-4 rounded-lg border-gray-300 has-[:checked]:border-primary">
         <div class="flex flex-row gap-3">
           <div class="h-5 w-full">
             <h5 class="line-clamp-1 font-semibold">{{ task.title }}</h5>
@@ -88,8 +88,8 @@
         <div>
           <p class="font-medium text-left text-base">{{ task.description }}</p>
         </div>
-        <div v-if="!$store.state.user_ismanager" class="flex flex-row gap-2">
-          <input type="checkbox" class="h-4 w-4" name="done">
+        <div v-show="!$store.state.user_ismanager" class="flex flex-row gap-2">
+          <input type="checkbox" :checked="Boolean(task.done)" @change="check_task(task.id)" class="h-4 w-4" name="done">
           <label class="after:content-[''] after:ml-0.5 after:text-red-500;" for="done">done</label>
         </div>
       </li>
@@ -110,10 +110,20 @@ export default {
     }
   },
   mounted(){
-    const headers = {
+      //get Invitations
+      this.invitations();
+      //get projects
+      this.projects();
+      //get meetings
+      this.meetings();
+      //get team
+      this.team();
+  },
+  methods: {
+    invitations() {
+      const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      //get Invitations
       axios.get('http://localhost:8000/api/invitations', {
         headers: headers
         })
@@ -125,8 +135,12 @@ export default {
           //localStorage.removeItem("token");
           //this.$router.push({ name: 'login' });
         });
-      //get projects
-    axios.get('http://localhost:8000/api/projects', {
+    },
+    projects() {
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      axios.get('http://localhost:8000/api/projects', {
       headers: headers
     })
       .then(response => {
@@ -136,34 +150,37 @@ export default {
         //localStorage.removeItem("token");
         //this.$router.push({ name: 'login' });
       });
-    
-    //get meetings
-    axios.get('http://localhost:8000/api/meetings', {
+    },
+    meetings() {
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      axios.get('http://localhost:8000/api/meetings', {
           headers: headers
         })
           .then(response => {
             store.state.meetings = response.data;
-            
           })
           .catch(error => {
             //localStorage.removeItem("token");
             //this.$router.push({ name: 'login' });
           });
-    //get team
-    axios.get('http://localhost:8000/api/team', {
-      headers: headers
-      })
-      .then(response => {
-        store.state.team = response.data;
-      })
-      .catch(error => {
-        //localStorage.removeItem("token");
-        //this.$router.push({ name: 'login' });
-      })
-
-      
-  },
-  methods: {
+    },
+    team() {
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      axios.get('http://localhost:8000/api/team', {
+        headers: headers
+        })
+        .then(response => {
+          store.state.team = response.data;
+        })
+        .catch(error => {
+          //localStorage.removeItem("token");
+          //this.$router.push({ name: 'login' });
+        })
+    },
     accept (){
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
@@ -235,7 +252,8 @@ export default {
           headers: headers
           })
           .then(response => {
-            location.reload();
+            this.projects();
+            this.tasks();
           })
           .catch(error => {
             //localStorage.removeItem("token");
@@ -251,7 +269,7 @@ export default {
           headers: headers
           })
           .then(response => {
-            location.reload();
+            this.meetings();
           })
           .catch(error => {
             //localStorage.removeItem("token");
@@ -267,7 +285,23 @@ export default {
           headers: headers
           })
           .then(response => {
-            location.reload();
+            this.tasks();
+          })
+          .catch(error => {
+            //localStorage.removeItem("token");
+            //this.$router.push({ name: 'login' });
+          });
+    },
+    check_task(id) {
+      const headers = {
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      };
+      const link = 'http://localhost:8000/api/tasks/' + id;
+        axios.put(link, {}, {
+          headers: headers
+          })
+          .then(response => {
+            this.tasks();
           })
           .catch(error => {
             //localStorage.removeItem("token");

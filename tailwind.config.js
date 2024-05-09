@@ -20,6 +20,9 @@ module.exports = {
       dropShadow: {
         'button': '0 5px 10px rgba(0, 0, 0, 0.05)',
         'input': '0 5px 10px rgba(0, 0, 0, 0.02)',
+        'button2': '0 5px 20px rgba(0, 0, 0, 0.1)',
+        'img': '0 0 25px rgba(0, 0, 0, 0.15)',
+        'img2': '0 0 20px rgba(32, 113, 255, 0.15)',
       }
     },
   },

@@ -1,14 +1,5 @@
 <template>
-<!--
-    <nav>
-    <router-link to="/login">login</router-link> |
-    <router-link to="/register">register</router-link>  |
-    <router-link to="/dashboard">dashboard</router-link>  |
-  </nav>
--->
-  
-
-  <router-view/>
+<router-view/>
 </template>
 
 <style>
