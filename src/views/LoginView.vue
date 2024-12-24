@@ -4,9 +4,9 @@
   </div>
   
   <div class="h-full flex flex-col items-center py-24">
-    <section class="h-fit w-[500px] flex flex-col">
+    <section class="h-fit w-full px-4 md:px-0 md:w-[500px] flex flex-col">
       <h1>Loging to your account</h1>
-      <h5 class="mb-8">Don't have an account? <router-link to="/register" class="text-blue-700 cursor-pointer">register</router-link></h5>
+      <h5 class="mb-8 text-sm md:text-md">Don't have an account? <router-link to="/register" class="text-blue-700 cursor-pointer">register</router-link></h5>
       <form action="#" @submit.prevent="login">
         <label for="email">email:</label>
         <input type="email" placeholder="type your email" v-model="user.email" required>

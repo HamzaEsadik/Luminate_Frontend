@@ -3,9 +3,9 @@
       <h1 class="logo mx-10 cursor-pointer">Luminate</h1>
   </div>
   <div class="h-full flex flex-col items-center py-24">
-    <section class="h-fit w-[500px] flex flex-col">
+    <section class="h-fit w-full px-4 md:px-0 md:w-[500px] flex flex-col">
       <h1>Create your account</h1>
-      <h5 class="mb-8">Already have an account? <router-link to="/login" class="text-blue-700 cursor-pointer">Login</router-link></h5>
+      <h5 class="mb-8 text-sm md:text-md">Already have an account? <router-link to="/login" class="text-blue-700 cursor-pointer">Login</router-link></h5>
       <form action="#" @submit.prevent="register">
 
         <label>First name:</label>
@@ -36,6 +36,7 @@
 </template>
 <script>
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 export default {
   data() {
     return {

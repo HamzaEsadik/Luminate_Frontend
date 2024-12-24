@@ -38,7 +38,7 @@
         <h3 class="text-secondary-dark text-xl font-normal">Schedule, organize, and track meetings effortlessly. From setting agendas to assigning action items, our platform ensures every meeting is productive and purposeful.</h3>
       </div>
       <div class="flex-1 h-full flex flex-col justify-center p-4">
-        <img src="../assets/images/projects.png" alt="" class="drop-shadow-img2">
+        <img src="../assets/images/meetings.png" alt="" class="drop-shadow-img2">
       </div>
     </div>
     <div class="w-full h-[400px] flex flex-row gap-24">
@@ -51,6 +51,7 @@
       </div>
     </div>
   </section>
+  
   <section class="w-full h-[300px] px-16 flex flex-col justify-center items-center gap-5">
     <h2>Why Choose Us:</h2>
     <h3 class="text-secondary-dark text-center text-xl font-medium">Our platform offers a user-friendly interface designed for effortless adoption, scalability to accommodate teams of any size, seamless customization to align with your unique workflow, and unwavering reliability supported by a dedicated team. Whether you're a small startup or a large enterprise, our system grows with you, ensuring a smooth experience every step of the way.</h3>
