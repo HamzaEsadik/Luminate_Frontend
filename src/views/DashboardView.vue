@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     logout() {
-      axios.post('http://localhost:8000/api/logout', {} ,{
+      axios.post(`${process.env.VUE_APP_API_BASE_URL}/logout`, {} ,{
         headers: this.headers
       })
         .then(response => {
@@ -69,7 +69,7 @@ export default {
     const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-    axios.get('http://localhost:8000/api/users', {
+    axios.get(`${process.env.VUE_APP_API_BASE_URL}/users`, {
       headers: headers
     })
       .then(response => {

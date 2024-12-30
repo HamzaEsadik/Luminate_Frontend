@@ -124,7 +124,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.get('http://localhost:8000/api/invitations', {
+      axios.get(`${process.env.VUE_APP_API_BASE_URL}/invitations`, {
         headers: headers
         })
         .then(response => {
@@ -140,7 +140,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.get('http://localhost:8000/api/projects', {
+      axios.get(`${process.env.VUE_APP_API_BASE_URL}/projects`, {
       headers: headers
     })
       .then(response => {
@@ -155,7 +155,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.get('http://localhost:8000/api/meetings', {
+      axios.get(`${process.env.VUE_APP_API_BASE_URL}/meetings`, {
           headers: headers
         })
           .then(response => {
@@ -170,7 +170,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.get('http://localhost:8000/api/team', {
+      axios.get(`${process.env.VUE_APP_API_BASE_URL}/team`, {
         headers: headers
         })
         .then(response => {
@@ -196,7 +196,7 @@ export default {
         });
     },
     reject (id) {
-      const link = 'http://localhost:8000/api/invitations/' + id;
+      const link = `${process.env.VUE_APP_API_BASE_URL}/invitations/` + id;
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
@@ -217,7 +217,7 @@ export default {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
       if(store.state.user_ismanager) {
-        const link = 'http://localhost:8000/api/tasksfor?user_id=' + this.selected_user + '&project_id=' + this.selected_project; 
+        const link = `${process.env.VUE_APP_API_BASE_URL}/tasksfor?user_id=` + this.selected_user + '&project_id=' + this.selected_project; 
         axios.get(link, {
           headers: headers
           })
@@ -230,7 +230,7 @@ export default {
           });
       } else {
         //get tasks
-      const link = 'http://localhost:8000/api/tasks?project_id=' + this.selected_project; 
+      const link = `${process.env.VUE_APP_API_BASE_URL}/tasks?project_id=` + this.selected_project; 
         axios.get(link, {
           headers: headers
           })
@@ -247,7 +247,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      const link = 'http://localhost:8000/api/projects/' + id;
+      const link = `${process.env.VUE_APP_API_BASE_URL}/projects/` + id;
         axios.delete(link, {
           headers: headers
           })
@@ -264,7 +264,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      const link = 'http://localhost:8000/api/meetings/' + id;
+      const link = `${process.env.VUE_APP_API_BASE_URL}/meetings/` + id;
         axios.delete(link, {
           headers: headers
           })
@@ -280,7 +280,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      const link = 'http://localhost:8000/api/tasks/' + id;
+      const link = `${process.env.VUE_APP_API_BASE_URL}/tasks/` + id;
         axios.delete(link, {
           headers: headers
           })
@@ -296,7 +296,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      const link = 'http://localhost:8000/api/tasks/' + id;
+      const link = `${process.env.VUE_APP_API_BASE_URL}/tasks/` + id;
         axios.put(link, {}, {
           headers: headers
           })
