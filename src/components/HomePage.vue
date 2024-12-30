@@ -185,7 +185,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.put('http://127.0.0.1:8000/api/accept',{}, {
+      axios.put(`${process.env.VUE_APP_API_BASE_URL}/accept`,{}, {
         headers: headers
       })
         .then(response => {

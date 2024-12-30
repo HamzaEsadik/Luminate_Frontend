@@ -55,8 +55,8 @@ export default {
   },
   methods: {
     register() {
-      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
-        axios.post('http://127.0.0.1:8000/api/register', this.user)
+      axios.get(`${process.env.VUE_APP_API_URL}/sanctum/csrf-cookie`).then(response => {
+        axios.post(`${process.env.VUE_APP_API_BASE_URL}/register`, this.user)
         .then(response => {
           localStorage.setItem("token", response.data.token);
           this.$router.push({ name: 'dashboard' });

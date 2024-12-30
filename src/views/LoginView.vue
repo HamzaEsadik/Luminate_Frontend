@@ -30,8 +30,8 @@ export default {
   },
   methods: {
     login() {
-      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
-        axios.post('http://127.0.0.1:8000/api/login', this.user)
+      axios.get(`${process.env.VUE_APP_API_URL}/sanctum/csrf-cookie`).then(response => {
+        axios.post(`${process.env.VUE_APP_API_BASE_URL}/login`, this.user)
         .then(response => {
           localStorage.setItem("token", response.data.token);
           //store.state.token = response.data.token;

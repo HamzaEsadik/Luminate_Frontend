@@ -33,7 +33,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.post('http://127.0.0.1:8000/api/projects',this.project, {
+      axios.post(`${process.env.VUE_APP_API_BASE_URL}/projects`,this.project, {
         headers: headers,
       })
         .then(response => {

@@ -33,7 +33,7 @@ export default {
       const headers = {
         'Authorization': 'Bearer ' + localStorage.getItem("token"),
       };
-      axios.put('http://127.0.0.1:8000/api/firing?user_id=' + id,{}, {
+      axios.put(`${process.env.VUE_APP_API_BASE_URL}/firing?user_id=` + id,{}, {
         headers: headers,
       })
         .then(response => {
