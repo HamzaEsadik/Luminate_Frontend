@@ -6,7 +6,7 @@
       <a href="/login" class="bg-white h-10 w-40 flex items-center justify-center hover:bg-secondary-dark hover:text-white cursor-pointer active:scale-95 rounded-lg text-primary text-base font-bold drop-shadow-button2">Login</a>
     </div>
   </header>
-  <section class="w-full h-full md:h-[650px] px-8 md:px-16 flex flex-col md:flex-row gap-8 md:gap-20 overflow-x-hidden">
+  <section class="w-full h-full md:py-28 px-8 md:px-16 flex flex-col md:flex-row gap-8 md:gap-20 overflow-x-hidden">
     <div class="h-full flex-1 flex flex-col gap-6 justify-center">
       <h1 class="text-md sm:text-5xl">Your Team's Success Starts Here!</h1>
       <h4 class="text-sm md:text-xl">Welcome to Luminate, where organizing, collaborating, and achieving your team's goals has never been easier. empowering your team to focus on what truly matters.</h4>
