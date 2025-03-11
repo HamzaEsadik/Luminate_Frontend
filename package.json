@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10",
-    "axios": "^1.6.8",
+    "axios": "^1.8.2",
     "core-js": "^3.8.3",
     "postcss": "^8",
     "serve": "^14.2.4",
