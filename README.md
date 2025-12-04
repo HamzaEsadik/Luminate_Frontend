@@ -1,7 +1,7 @@
 <h1 align="center" style="font-weight: bold;">Luminate 🗓</h1>
 
 <p align="center">
-  <b>An enterprise-grade project management system built with Vue.js</b>
+  <b>roject management system built with Vue.js</b>
 </p>
 
 <p align="center">
