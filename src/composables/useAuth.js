@@ -30,7 +30,14 @@ export function useAuth() {
       router.push({ name: ROUTE_NAMES.DASHBOARD })
       return response.data
     } catch (err) {
-      error.value = err.response?.data?.message || 'Login failed'
+      // Handle validation errors from Laravel
+      if (err.response?.data?.errors) {
+        const errors = err.response.data.errors
+        const firstErrorKey = Object.keys(errors)[0]
+        error.value = errors[firstErrorKey][0]
+      } else {
+        error.value = err.response?.data?.message || 'Login failed'
+      }
       throw err
     } finally {
       loading.value = false
@@ -64,7 +71,14 @@ export function useAuth() {
       router.push({ name: ROUTE_NAMES.DASHBOARD })
       return response.data
     } catch (err) {
-      error.value = err.response?.data?.message || 'Registration failed'
+      // Handle validation errors from Laravel
+      if (err.response?.data?.errors) {
+        const errors = err.response.data.errors
+        const firstErrorKey = Object.keys(errors)[0]
+        error.value = errors[firstErrorKey][0]
+      } else {
+        error.value = err.response?.data?.message || 'Registration failed'
+      }
       throw err
     } finally {
       loading.value = false
