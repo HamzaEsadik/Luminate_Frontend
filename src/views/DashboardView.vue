@@ -1,14 +1,14 @@
 <template>
-  <create-meeting class="z-50" v-if="this.$store.state.create_meeting"></create-meeting>
-  <create-project class="z-50" v-if="this.$store.state.create_project"></create-project>
-  <create-task class="z-50" v-if="this.$store.state.create_task"></create-task>
-  <add-member class="z-50" v-if="this.$store.state.add_team"></add-member>
+  <CreateMeeting v-if="$store.state.ui.modals.createMeeting" />
+  <CreateProject v-if="$store.state.ui.modals.createProject" />
+  <CreateTask v-if="$store.state.ui.modals.createTask" />
+  <AddMember v-if="$store.state.ui.modals.addTeam" />
   <div class="flex flex-col h-screen">
     <div class="w-full h-12 bg-secondary-dark fixed z-10 flex justify-between items-center px-8">
       <svg class="cursor-pointer h-6 w-6 stroke-2 stroke-white" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
       </svg>
-      <h4 class="text-white cursor-pointer">{{ $store.state.user_company }}</h4>
+      <h4 class="text-white cursor-pointer">{{ $store.state.auth.userCompany }}</h4>
       <svg @click="logout" class="cursor-pointer h-6 w-6 stroke-2 stroke-white" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"></path>
       </svg>
@@ -32,57 +32,50 @@
         </div>
       </div>
       <div class="overflow-y-auto w-full h-full box-border rounded-lg flex flex-col place-items-center gap-5 pr-4 sm:pt-12">
-        <home-page v-if="selectedView === 'home'"></home-page>
-        <team-page v-if="selectedView === 'team'"></team-page>
+        <HomePage v-if="selectedView === 'home'" />
+        <TeamPage v-if="selectedView === 'team'" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import store from '@/store';
-import axios, { AxiosError } from 'axios';
-axios.defaults.withCredentials = true;
+import { useAuth } from '@/composables/useAuth'
+import HomePage from '@/components/HomePage.vue'
+import TeamPage from '@/components/TeamPage.vue'
+import CreateMeeting from '@/components/CreateMeeting.vue'
+import CreateProject from '@/components/CreateProject.vue'
+import CreateTask from '@/components/CreateTask.vue'
+import AddMember from '@/components/AddMember.vue'
+
 export default {
-  data() {
+  name: 'DashboardView',
+
+  components: {
+    HomePage,
+    TeamPage,
+    CreateMeeting,
+    CreateProject,
+    CreateTask,
+    AddMember,
+  },
+
+  setup() {
+    const { logout, fetchCurrentUser } = useAuth()
+
+    // Fetch user data on mount
+    fetchCurrentUser().catch(() => {
+      // Error handled by interceptor
+    })
+
     return {
-      'selectedView': 'home',
-      'headers':{
-        'Authorization': 'Bearer ' + localStorage.getItem("token")
-      }
+      logout,
     }
   },
-  methods: {
-    logout() {
-      axios.post(`${process.env.VUE_APP_API_BASE_URL}/logout`, {} ,{
-        headers: this.headers
-      })
-        .then(response => {
-          localStorage.removeItem("token");
-          this.$router.push({ name: 'login' });
-        })
-        .catch(error => {
-          console.log(error.response.data.message);
-        });
-    },
+
+  data() {
+    return {
+      selectedView: 'home',
+    }
   },
-  mounted(){
-    const headers = {
-        'Authorization': 'Bearer ' + localStorage.getItem("token"),
-      };
-    axios.get(`${process.env.VUE_APP_API_BASE_URL}/users`, {
-      headers: headers
-    })
-      .then(response => {
-        store.state.user_name = response.data.first_name;
-        store.state.user_company = response.data.company;
-        store.state.user_id = response.data.id;
-        store.state.user_ismanager = Boolean(response.data.is_manager);
-        store.state.company_id = response.data.company_id;
-      })
-      .catch(error => {
-        localStorage.removeItem("token");
-        this.$router.push({ name: 'login' });
-      });
-  }
 }
 </script>

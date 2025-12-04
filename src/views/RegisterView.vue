@@ -1,71 +1,148 @@
+<!--
+  RegisterView - User registration page
+  Refactored with composables and shared components
+-->
 <template>
   <div class="h-16 w-full flex flex-col justify-center">
-      <h1 class="logo mx-10 cursor-pointer">Luminate</h1>
+    <h1 class="logo mx-10 cursor-pointer">Luminate</h1>
   </div>
+
   <div class="h-full flex flex-col items-center py-24">
     <section class="h-fit w-full px-4 md:px-0 md:w-[500px] flex flex-col">
       <h1>Create your account</h1>
-      <h5 class="mb-8 text-sm md:text-md">Already have an account? <router-link to="/login" class="text-blue-700 cursor-pointer">Login</router-link></h5>
-      <form action="#" @submit.prevent="register">
+      <h5 class="mb-8 text-sm md:text-md">
+        Already have an account?
+        <router-link to="/login" class="text-blue-700 cursor-pointer hover:underline">
+          Login
+        </router-link>
+      </h5>
 
-        <label>First name:</label>
-        <input type="text" placeholder="type your first name" v-model="user.first_name" required>
+      <ErrorMessage v-if="error" :message="error" type="error" @dismiss="error = null" />
 
-        <label>Last name:</label>
-        <input type="text" placeholder="type your last name" v-model="user.last_name" required>
+      <form @submit.prevent="handleRegister">
+        <BaseInput
+          v-model="userData.first_name"
+          type="text"
+          label="First Name"
+          placeholder="Enter your first name"
+          required
+          :disabled="loading"
+        />
 
-        <label>Role:</label>
-        <select name="role" id="role" v-model="user.is_manager">
-          <option :value="true">Manager</option>
-          <option :value="false">Employee</option>
-        </select>
+        <BaseInput
+          v-model="userData.last_name"
+          type="text"
+          label="Last Name"
+          placeholder="Enter your last name"
+          required
+          :disabled="loading"
+          class="mt-4"
+        />
 
-        <label v-if="user.is_manager">Company:</label>
-        <input type="text" placeholder="type your company name" v-if="user.is_manager" v-model="user.name">
+        <div class="mt-4">
+          <label for="role" class="block text-sm font-medium text-gray-700 mb-2">
+            Role
+          </label>
+          <select
+            id="role"
+            v-model="userData.is_manager"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            :disabled="loading"
+          >
+            <option :value="true">Manager</option>
+            <option :value="false">Employee</option>
+          </select>
+        </div>
 
-        <label>email:</label>
-        <input type="email" placeholder="type your email" v-model="user.email"  required>
+        <BaseInput
+          v-if="userData.is_manager"
+          v-model="userData.name"
+          type="text"
+          label="Company Name"
+          placeholder="Enter your company name"
+          :required="userData.is_manager"
+          :disabled="loading"
+          class="mt-4"
+        />
 
-        <label>password:</label>
-        <input type="password" placeholder="type your password" v-model="user.password"  required>
+        <BaseInput
+          v-model="userData.email"
+          type="email"
+          label="Email"
+          placeholder="Enter your email"
+          required
+          :disabled="loading"
+          class="mt-4"
+        />
 
-        <button type="submit" class="mt-5" @submit.prevent="register">Register</button>
+        <BaseInput
+          v-model="userData.password"
+          type="password"
+          label="Password"
+          placeholder="Enter your password"
+          required
+          :disabled="loading"
+          class="mt-4"
+        />
+
+        <BaseButton
+          type="submit"
+          variant="primary"
+          size="lg"
+          :loading="loading"
+          :disabled="loading"
+          class="mt-5 w-full"
+        >
+          Register
+        </BaseButton>
       </form>
     </section>
   </div>
 </template>
+
 <script>
-import axios from 'axios';
-axios.defaults.withCredentials = true;
+import { ref } from 'vue'
+import { useAuth } from '@/composables/useAuth'
+import BaseInput from '@/shared/components/BaseInput.vue'
+import BaseButton from '@/shared/components/BaseButton.vue'
+import ErrorMessage from '@/shared/components/ErrorMessage.vue'
+
 export default {
-  data() {
+  name: 'RegisterView',
+
+  components: {
+    BaseInput,
+    BaseButton,
+    ErrorMessage,
+  },
+
+  setup() {
+    const { register, loading, error } = useAuth()
+
+    const userData = ref({
+      first_name: '',
+      last_name: '',
+      is_manager: false,
+      name: '',
+      email: '',
+      password: '',
+    })
+
+    const handleRegister = async () => {
+      try {
+        await register(userData.value)
+      } catch (err) {
+        // Error is handled in the composable
+        console.error('Registration failed:', err)
+      }
+    }
+
     return {
-      'user' : {
-        'first_name': '',
-        'last_name': '',
-        'is_manager':false,
-        'name': '',
-        'email': '',
-        'password': '',
-      },
-      'header': {
-        'Accept': 'application/json',
-      },
+      userData,
+      loading,
+      error,
+      handleRegister,
     }
   },
-  methods: {
-    register() {
-      axios.get(`${process.env.VUE_APP_API_URL}/sanctum/csrf-cookie`).then(response => {
-        axios.post(`${process.env.VUE_APP_API_BASE_URL}/register`, this.user)
-        .then(response => {
-          localStorage.setItem("token", response.data.token);
-          this.$router.push({ name: 'dashboard' });
-        })
-        .catch(error => {
-          console.log(error.response.data.message);
-        });
-      });
-    }
-  }
 }
 </script>

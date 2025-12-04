@@ -43,7 +43,11 @@ label {
     text-base
     text-secondary
     text-left
-    mb-2
+    mb-2;
+}
+
+form label {
+    @apply
     after:content-['*'] after:ml-0.5 after:text-red-500;
 }
 

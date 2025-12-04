@@ -1,79 +1,97 @@
-                  
- 
 <h1 align="center" style="font-weight: bold;">Luminate 🗓</h1>
 
 <p align="center">
-<a href="#tech">Technologies</a>
-<a href="#started">Getting Started</a>
-
- 
+  <b>An enterprise-grade project management system built with Vue.js</b>
 </p>
-
-
-<p align="center">Luminate is an intuitive project management system designed to streamline the management of projects, meetings, and tasks.</p>
-
 
 <p align="center">
-<a href="https://youtu.be/pxOwHbiqo80">💻 Demo video</a>
+  Luminate is a modern, scalable project management platform designed to streamline team collaboration, project tracking, meeting scheduling, and task management with an intuitive user interface.
 </p>
- 
-<h2 id="layout">🎨 Layout</h2>
 
 <p align="center">
-
-<img src="https://i.ibb.co/sFbvGbM/Screenshot-1.jpg" alt="Screenshot" width="400px">
+  <a href="https://youtu.be/pxOwHbiqo80">💻 Demo video</a>
 </p>
- 
-<h2 id="technologies">💻 Technologies</h2>
 
-- html 5 / Javascript
-- Vue.js
-- Tailwind Css
- 
-<h2 id="started">🚀 Getting started</h2>
+---
 
-follow these simple example steps to get a local copy up and running. 
- 
-<h3>Prerequisites</h3>
+## ✨ Features
 
-This project requires Nodejs, npm, vuejs, to be installed in your system. If you don't have it installed, you can follow these links::
+### 🎯 Core Functionality
 
-- [NodeJS](https://nodejs.org/en/download/package-manager)
-- [vue Cli](https://cli.vuejs.org/guide/installation.html)
-- [npm](https://docs.npmjs.com/cli/v8/commands/npm-install)
- 
-<h3>Cloning</h3>
+- **User Authentication** - Secure login/registration with JWT token management
+- **Project Management** - Create, update, and delete projects with team collaboration
+- **Meeting Scheduler** - Schedule and manage upcoming team meetings
+- **Task Assignment** - Assign tasks to team members with deadline tracking
+- **Team Management** - Invite team members and manage company teams
+- **Role-Based Access** - Manager and employee roles with different permissions
 
-Get started by cloning the repository to your local machine
-```bash
-git clone https://github.com/HamzaEsadik/luminate_frontend.git
-```
- 
-<h3>Starting</h3>
+### 🎨 User Experience
 
-- Run the backend
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Real-time Updates** - Instant data synchronization across components
+- **Intuitive Modals** - Clean UI for creating projects, meetings, and tasks
+- **Dashboard Overview** - Centralized view of all projects, meetings, and tasks
 
-[Backend](https://github.com/HamzaEsadik/Luminate)
+---
 
-- Install Frontend Packages:
+## 🛠️ Tech Stack
 
-```bash
-cd luminate_frontend
-npm install
-```
+### Frontend Framework
 
-- Run developement server:
+- **Vue.js 3** - Progressive JavaScript framework with Composition API
+- **Vue Router 4** - Client-side routing with navigation guards
+- **Vuex 4** - Centralized state management with modular architecture
 
-```bash
-npm run serve
-```
- 
-<h2 id="contribute">📫 Contribute</h2>
+### Styling & UI
 
-Thank you for your interest in contributing to this project. At this time, we are not accepting external contributions. However, we appreciate your enthusiasm and encourage you to use the project, provide feedback, and share your thoughts.
- 
-<h3>Documentations that might help</h3>
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **Custom Components** - Reusable BaseInput, BaseButton, BaseModal components
+- **Responsive Design** - Mobile, tablet, and desktop optimization
 
-[Vue.js](https://vuejs.org/guide/introduction.html)
+### HTTP & API
 
-[Tailwind](https://tailwindcss.com/docs/installation)
+- **Axios** - Promise-based HTTP client with interceptors
+- **Centralized API Services** - Modular service layer for all API calls
+- **Request/Response Interceptors** - Automatic token injection and error handling
+
+---
+
+## 🚀 Performance Optimizations
+
+### Architecture Patterns
+
+- **Composables Pattern** - Reusable business logic with Vue Composition API
+- **Lazy Loading** - Route-based code splitting for faster initial load
+- **Namespaced Vuex Modules** - Efficient state management with isolated modules
+
+### API Optimization
+
+- **Axios Instance** - Single configured instance with base URL and timeout
+- **Request Interceptors** - Automatic authentication token injection
+- **Error Handling** - Global error handling with automatic redirects
+- **Response Caching** - Optimized data fetching strategies
+
+### Code Optimization
+
+- **Tree Shaking** - Unused code elimination in production builds
+- **Component Reusability** - Shared components reduce code duplication
+- **Computed Properties** - Efficient reactive data computation
+- **Event Delegation** - Optimized DOM event handling
+
+---
+
+## 👨‍💻 Author
+
+**Hamza Esadik**
+
+- GitHub: [@HamzaEsadik](https://github.com/HamzaEsadik)
+
+---
+
+## ⭐ Show Your Support
+
+If you found this project helpful, please give it a star! ⭐
+
+---
+
+<p align="center">Made with ❤️ by Hamza Esadik</p>

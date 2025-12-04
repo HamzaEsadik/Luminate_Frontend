@@ -1,0 +1,48 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "vue/multi-word-component-names": "warn",
+    "vue/no-unused-vars": "warn",
+    "vue/require-default-prop": "warn",
+    "vue/require-prop-types": "warn",
+    "no-console": "off",
+    "no-debugger": "warn",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn",
+    "no-var": "error",
+    "object-shorthand": "warn",
+    "quote-props": ["warn", "as-needed"],
+    "prefer-template": "warn",
+    "prefer-arrow-callback": "warn",
+    "arrow-spacing": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "semi": ["warn", "never"],
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "vue/html-indent": ["warn", 2],
+    "vue/max-attributes-per-line": ["warn", {
+      "singleline": 3,
+      "multiline": 1
+    }],
+    "vue/html-self-closing": ["warn", {
+      "html": {
+        "void": "always",
+        "normal": "never",
+        "component": "always"
+      }
+    }]
+  }
+}
